@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.ref }}
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -20,5 +22,4 @@ jobs:
           commit-message: 'feat: creating pull request'
           title: 'Auto opened PR - ${{ steps.cpr.outputs.pull-request-number }}'
           branch: autopr
-          base: main
           delete-branch: true
