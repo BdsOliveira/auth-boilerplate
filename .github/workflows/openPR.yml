@@ -13,7 +13,7 @@ jobs:
           ref: ${{ github.event.ref }}
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
@@ -21,4 +21,6 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit-message: 'feat: creating pull request'
           title: 'Auto opened PR - ${{ steps.cpr.outputs.pull-request-number }}'
-          branch: main
+          branch: autopr
+          base: main
+          delete-branch: true
