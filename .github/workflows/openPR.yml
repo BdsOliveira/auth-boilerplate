@@ -22,4 +22,5 @@ jobs:
           commit-message: 'feat: creating pull request'
           title: 'Auto opened PR - ${{ steps.cpr.outputs.pull-request-number }}'
           branch: autopr
+          base: main
           delete-branch: true
