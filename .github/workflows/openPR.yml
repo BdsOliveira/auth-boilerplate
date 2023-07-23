@@ -19,5 +19,3 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit-message: 'feat: creating pull request'
           title: 'Auto opened PR - ${{ steps.cpr.outputs.pull-request-number }}'
-          branch: 'main'
-          delete-branch: true
