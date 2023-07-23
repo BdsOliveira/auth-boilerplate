@@ -21,11 +21,18 @@ class LoginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'User email or password does not match.',
+                'errors' => [
+                    'message' => 'User email or password does not match.'
+                ],
             ], Response::HTTP_NOT_FOUND);
         }
+        return $this->loginSuccess($request, $user);
+    }
 
-        $user->tokens()->delete();
+    private function loginSuccess(LoginRequest $request, User $user) {
+
         $token = $user->createToken($request->device_name)->plainTextToken;
+        $user->tokens()->delete();
 
         return response()->json([
             'message' => 'User logged in succesfully.',
