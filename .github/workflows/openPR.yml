@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Reset promotion branch
+      - name: Reset branch
         run: |
-          git fetch origin main:main
-          git reset --hard main
+          git fetch origin ${{ github.event.ref }}:${{ github.event.ref }}
+          git reset --hard ${{ github.event.ref }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
