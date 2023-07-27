@@ -2,7 +2,8 @@ name: Open Pull Request
 
 on:
   push:
-    branchs: [feat/**]
+    branchs:
+      - feat/**
 
 jobs:
   open-pull-request:
@@ -16,7 +17,8 @@ jobs:
           node-version: 20
       - name: Reset branch
         run: |
-          git pull
+          git fetch origin ${{ github.event.ref }}:${{ github.event.ref }}
+          git reset --hard ${{ github.event.ref }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
