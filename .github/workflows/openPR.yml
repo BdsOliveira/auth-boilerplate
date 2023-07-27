@@ -2,7 +2,8 @@ name: Open Pull Request
 
 on:
   push:
-    branchs: [feat/**]
+    branchs:
+      - feat/**
 
 jobs:
   open-pull-request:
@@ -16,7 +17,8 @@ jobs:
           node-version: 20
       - name: Reset branch
         run: |
-          git pull
+          git fetch origin main:main
+          git reset --hard main
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -24,6 +26,4 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit-message: 'feat: creating pull request'
           title: 'Auto opened PR - ${{ steps.cpr.outputs.pull-request-number }}'
-          branch: autopr
-          base: main
           delete-branch: true
