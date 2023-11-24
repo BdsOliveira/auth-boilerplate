@@ -39,6 +39,7 @@ class LoginControllerTest extends TestCase
                     'email_verified_at',
                 ],
             ]);
+        $this->assertAuthenticated();
     }
 
     public function test_login_with_user_that_is_not_registered(): void
@@ -49,7 +50,7 @@ class LoginControllerTest extends TestCase
             'device_name' => 'phpunit',
         ]);
 
-        $response->assertStatus(Response::HTTP_NOT_FOUND)
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED)
         ->assertJsonStructure($this->errorsDefinition);
     }
 
