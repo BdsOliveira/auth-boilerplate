@@ -5,7 +5,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
@@ -45,6 +45,13 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test": [
+            "./vendor/bin/phpunit --testdox"
+        ],
+        "test:cov": [
+            "./vendor/bin/phpunit  --testdox --coverage-text=coverage.txt",
+            "php artisan app:coverage"
         ]
     },
     "extra": {
